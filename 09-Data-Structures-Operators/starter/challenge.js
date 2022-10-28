@@ -3,30 +3,47 @@
 // 124. Challenge #4
 
 // Required code for the challenge
-document.body.append(document.createElement('textarea'));
-document.body.append(document.createElement('button'));
+
+const textArea = document.createElement('textarea');
+
+const btn = document.createElement('button');
+
+btn.innerHTML = 'OK';
+
+document.body.append(textArea);
+document.body.append(btn);
 
 // Receive a list of variable names written in underscore_case and convert them to camelCase.
 
 const toCamelCase = function (underScoreCaseInput) {
-  const camelCaseWords = []; // Create empty array to put separate (correct cased) words after
-  const separateWords = underScoreCaseInput.toLowerCase().split('_'); // Input into lower case and put into array split by the correct separator
-  for (const n of separateWords) {
-    // Loop through the array of separate words
-    if (n === separateWords[0]) {
-      // If it's the first word of the sentence, then put it into the array without changing it and continue looping
-      camelCaseWords.push(n);
-      continue;
+  if (underScoreCaseInput === '') {
+    return console.error(`Please write something...`);
+  } else {
+    const camelCaseWords = []; // Create empty array to put separate (correct cased) words after
+    const separateWords = underScoreCaseInput.toLowerCase().split('_'); // Input into lower case and put into array split by the correct separator
+    for (const n of separateWords) {
+      // Loop through the array of separate words
+      if (n === separateWords[0]) {
+        // If it's the first word of the sentence, then put it into the array without changing it and continue looping
+        camelCaseWords.push(n);
+        continue;
+      }
+      // Make the first letter upper case and join it with the rest of the word
+      let correctCasedWord;
+      correctCasedWord = n[0].toUpperCase() + n.slice(1);
+      // Then push it into the array
+      camelCaseWords.push(correctCasedWord);
     }
-    // Make the first letter upper case and join it with the rest of the word
-    let correctCasedWord;
-    correctCasedWord = n[0].toUpperCase() + n.slice(1);
-    // Then push it into the array
-    camelCaseWords.push(correctCasedWord);
+    // Join all the words in the array without a separation and return the converted string
+    const camelCaseWord = camelCaseWords.join('');
+    if (camelCaseWords[0] === camelCaseWords[1]) {
+      return console.error(
+        `You wrote two equal words at the beginning. \n The two first words have to be different. Please try again using different words.\n Future functionality will accept equal words at the beginning. Sorry for the inconvenience!`
+      );
+    } else {
+      return camelCaseWord;
+    }
   }
-  // Join all the words in the array without a separation and return the converted string
-  const camelCaseWord = camelCaseWords.join('');
-  return camelCaseWord;
 };
 
 // Parse function into button press
@@ -37,7 +54,9 @@ document.querySelector('button').addEventListener('click', function () {
   // Get the variable into the function above
   const convertedUserInput = toCamelCase(userInput);
   // Log it to the console
-  console.log(`${convertedUserInput}`);
+  if (convertedUserInput !== undefined) {
+    console.log(`Converted output to camelCase: ${convertedUserInput}`);
+  }
 });
 
 /* Past challenges
