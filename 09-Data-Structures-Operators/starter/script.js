@@ -2,7 +2,7 @@
 
 import('./challenge.js');
 const log = console.log;
-
+/*
 // Data needed for a later exercise
 const flights =
   '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
@@ -57,6 +57,7 @@ const restaurant = {
   },
 };
 
+
 log('a+very+nice+string'.split('+'));
 
 log('Jonas Schmedtmann'.split(' '));
@@ -94,7 +95,41 @@ console.log(capitalizeName('jonas schmedtmann'));
 
 console.log(capitalizeNameAlt(passenger));
 
-/*
+// Padding
+
+const message = 'Go to gate 23!';
+console.log(message.padStart(20, '#'));
+console.log('Gonza'.padStart(20, '#'));
+
+console.log('Gonza'.padEnd(20, '#'));
+
+// Real world padding example
+
+const maskCreditCard = function (number) {
+  const str = number + '';
+  const last = str.slice(-4);
+  return last.padStart(str.length, '*');
+};
+
+console.log(maskCreditCard(4539990530700214));
+
+// Repeat method
+
+const message2 = 'Bad weather... All departures delayed... ';
+
+console.log(message2.repeat(5));
+
+// Due to the bad weather there are several planes waiting in line.
+
+const planesInLine = function (n) {
+  console.log(`There are ${n} planes in line ${'✈'.repeat(n)}`);
+};
+
+planesInLine(5);
+planesInLine(3);
+planesInLine(12);
+
+
 ///////////////////////////////////////
 // Working with strings #2
 const airline = 'TAP Air Portugal';
