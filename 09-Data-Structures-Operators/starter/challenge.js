@@ -15,33 +15,33 @@ document.body.append(btn);
 
 // Receive a list of variable names written in underscore_case and convert them to camelCase.
 
-const toCamelCase = function (underScoreCaseInput) {
-  if (underScoreCaseInput === '') {
+const toCamelCase = function (input) {
+  if (input === '') {
     return console.error(`Please write something...`);
   } else {
     const camelCaseWords = []; // Create empty array to put separate (correct cased) words after
-    const separateWords = underScoreCaseInput.toLowerCase().split('_'); // Input into lower case and put into array split by the correct separator
-    for (const n of separateWords) {
+    const separateWords = input.toLowerCase().split('_'); // Input into lower case and put into array split by the correct separator
+    for (const word of separateWords) {
       // Loop through the array of separate words
-      if (n === separateWords[0]) {
+      if (word === separateWords[0]) {
         // If it's the first word of the sentence, then put it into the array without changing it and continue looping
-        camelCaseWords.push(n);
+        camelCaseWords.push(word);
         continue;
       }
       // Make the first letter upper case and join it with the rest of the word
       let correctCasedWord;
-      correctCasedWord = n[0].toUpperCase() + n.slice(1);
+      correctCasedWord = word[0].toUpperCase() + word.slice(1);
       // Then push it into the array
       camelCaseWords.push(correctCasedWord);
     }
     // Join all the words in the array without a separation and return the converted string
-    const camelCaseWord = camelCaseWords.join('');
+    const camelCaseSentence = camelCaseWords.join('');
     if (camelCaseWords[0] === camelCaseWords[1]) {
       return console.error(
         `You wrote two equal words at the beginning. \n The two first words have to be different. Please try again using different words.\n Future functionality will accept equal words at the beginning. Sorry for the inconvenience!`
       );
     } else {
-      return camelCaseWord;
+      return camelCaseSentence;
     }
   }
 };
